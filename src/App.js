@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import React, { useState } from'react';
+import Accordian from './Accordian';
+import { Questions } from './api';
 import './App.css';
 
 function App() {
+
+  const [select, setselect] = useState(null);
+
+  const selectaccordian = (i) => {
+
+    if(select == i) {
+      setselect(null);
+    } else {
+      setselect(i);
+    }
+
+  }
+
+  console.log(select);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section class='accordian_section'>
+      {
+        Questions.map((que, id) => (
+          <Accordian que={que} id={id} selectaccordian={selectaccordian} select={select}/>
+        ))
+      }
+    </section>
   );
 }
 
